@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Moradia.Data;
 using Moradia.Data.Model;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,16 +14,19 @@ namespace Moradia.Api.Controllers
     public class MoradorController : ControllerBase
     {
         private DataFactory _dataFactory;
-        public MoradorController(DataFactory dataFactory)
+        private IServiceProvider _serviceProvider;
+
+        public MoradorController(DataFactory dataFactory, IServiceProvider serviceProvider)
         {
             _dataFactory = dataFactory;
+            _serviceProvider = serviceProvider;
         }
 
         // GET: api/<MoradorController>
         [HttpGet]
         public IActionResult Get()
         {
-            using(var conn = _dataFactory.OpenConnection())
+            using (var conn = _dataFactory.OpenConnection())
             {
                 return Ok(conn.Query("EXEC ConsultaMoradores"));
             }
@@ -35,7 +36,7 @@ namespace Moradia.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            using (var context = new DataContext())
+            using (var context = _serviceProvider.GetRequiredService<DataContext>())
             {
                 var item = context.Morador.Find(id);
                 if (item != null)
@@ -49,7 +50,7 @@ namespace Moradia.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Morador data)
         {
-            using (var context = new DataContext())
+            using (var context = _serviceProvider.GetRequiredService<DataContext>())
             {
                 context.Morador.Add(data);
                 context.SaveChanges();
@@ -61,7 +62,7 @@ namespace Moradia.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Morador value)
         {
-            using (var context = new DataContext())
+            using (var context = _serviceProvider.GetRequiredService<DataContext>())
             {
                 value.Id = id;
                 context.Morador.Update(value);
@@ -73,7 +74,7 @@ namespace Moradia.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            using (var context = new DataContext())
+            using (var context = _serviceProvider.GetRequiredService<DataContext>())
             {
                 var item = context.Morador.Find(id);
                 if (item == null)

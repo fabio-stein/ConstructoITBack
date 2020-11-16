@@ -6,16 +6,17 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["Moradia/Moradia.csproj", "Moradia/"]
-RUN dotnet restore "Moradia/Moradia.csproj"
+COPY ["Moradia/Moradia.Api.csproj", "Moradia/"]
+COPY ["Moradia.Data/Moradia.Data.csproj", "Moradia.Data/"]
+RUN dotnet restore "Moradia/Moradia.Api.csproj"
 COPY . .
 WORKDIR "/src/Moradia"
-RUN dotnet build "Moradia.csproj" -c Release -o /app/build
+RUN dotnet build "Moradia.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Moradia.csproj" -c Release -o /app/publish
+RUN dotnet publish "Moradia.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Moradia.dll"]
+ENTRYPOINT ["dotnet", "Moradia.Api.dll"]
