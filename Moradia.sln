@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moradia.Api", "Moradia\Moradia.Api.csproj", "{165A8F94-787D-4534-BB7D-0EC7134A0CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moradia.Data", "Moradia.Data\Moradia.Data.csproj", "{941CCDDA-FFB5-4DC7-A75D-653EB484B96D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{165A8F94-787D-4534-BB7D-0EC7134A0CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165A8F94-787D-4534-BB7D-0EC7134A0CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165A8F94-787D-4534-BB7D-0EC7134A0CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165A8F94-787D-4534-BB7D-0EC7134A0CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{941CCDDA-FFB5-4DC7-A75D-653EB484B96D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941CCDDA-FFB5-4DC7-A75D-653EB484B96D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941CCDDA-FFB5-4DC7-A75D-653EB484B96D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941CCDDA-FFB5-4DC7-A75D-653EB484B96D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0A41954-76A7-4ABB-85C8-34AB50D9CC21}
+	EndGlobalSection
+EndGlobal
